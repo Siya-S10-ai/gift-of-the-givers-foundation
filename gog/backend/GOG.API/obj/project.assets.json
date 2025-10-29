@@ -5148,11 +5148,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gog\\backend\\GOG.API\\GOG.API.csproj",
+      "projectUniqueName": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gift-of-the-givers-foundation\\gog\\backend\\GOG.API\\GOG.API.csproj",
       "projectName": "GOG.API",
-      "projectPath": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gog\\backend\\GOG.API\\GOG.API.csproj",
+      "projectPath": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gift-of-the-givers-foundation\\gog\\backend\\GOG.API\\GOG.API.csproj",
       "packagesPath": "C:\\Users\\Thandiwe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gog\\backend\\GOG.API\\obj\\",
+      "outputPath": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gift-of-the-givers-foundation\\gog\\backend\\GOG.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

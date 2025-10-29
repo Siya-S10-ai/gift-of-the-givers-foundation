@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gog", "gog", "{A5043F73-63B3-27AF-1B76-7B5085471EB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{C39E244F-C4A4-C5FF-63C5-41DE9AC49A5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GOG.API", "gog\backend\GOG.API\GOG.API.csproj", "{5CAB4724-D00F-1FA2-B27C-6B9BA24DA5EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CAB4724-D00F-1FA2-B27C-6B9BA24DA5EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CAB4724-D00F-1FA2-B27C-6B9BA24DA5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CAB4724-D00F-1FA2-B27C-6B9BA24DA5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CAB4724-D00F-1FA2-B27C-6B9BA24DA5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C39E244F-C4A4-C5FF-63C5-41DE9AC49A5A} = {A5043F73-63B3-27AF-1B76-7B5085471EB4}
+		{5CAB4724-D00F-1FA2-B27C-6B9BA24DA5EE} = {C39E244F-C4A4-C5FF-63C5-41DE9AC49A5A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0714924-4FAF-42B1-A913-455682700B98}
+	EndGlobalSection
+EndGlobal

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ML80smlAKyk=",
+  "dgSpecHash": "rT7XrA6I9CM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gog\\backend\\GOG.API\\GOG.API.csproj",
+  "projectFilePath": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gift-of-the-givers-foundation\\gog\\backend\\GOG.API\\GOG.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thandiwe\\.nuget\\packages\\azure.core\\1.47.3\\azure.core.1.47.3.nupkg.sha512",
     "C:\\Users\\Thandiwe\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
