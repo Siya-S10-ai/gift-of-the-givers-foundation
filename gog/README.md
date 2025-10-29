@@ -52,6 +52,8 @@ gog/
 4. Run `dotnet ef database update`
 5. Run `dotnet run`
 
+#### On a seperate terminal do:
+
 ### Frontend Setup
 1. Navigate to `frontend/` directory
 2. Run `npm install`
