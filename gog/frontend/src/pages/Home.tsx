@@ -212,7 +212,7 @@ const Home: React.FC = () => {
       <footer className="bg-gray-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
-            <p>&copy; 2025 GOG - Gift of the Givers. All rights reserved.</p>
+            <p>&copy; 2025 GOG - Gift of the Givers Foundation. All rights reserved.</p>
             <p className="mt-2">
               <a href="#" className="hover:text-blue-300">Privacy Policy</a> | 
               <a href="#" className="hover:text-blue-300 ml-2">Terms of Service</a>
