@@ -23,7 +23,7 @@ const ReporterDashboard: React.FC = () => {
     { id: 'Natural Disaster', name: 'Natural Disaster', icon: '🌪️', color: 'bg-red-100 text-red-800' },
     { id: 'Healthcare', name: 'Healthcare', icon: '🏥', color: 'bg-blue-100 text-blue-800' },
     { id: 'Education', name: 'Education', icon: '🎓', color: 'bg-green-100 text-green-800' },
-    { id: 'Human Development', name: 'Human Development', icon: '👥', color: 'bg-purple-100 text-purple-800' },
+    { id: 'Human Development', name: 'Human Development', icon: '👣', color: 'bg-purple-100 text-purple-800' },
     { id: 'Water Provision', name: 'Water Provision', icon: '💧', color: 'bg-cyan-100 text-cyan-800' },
     { id: 'Hunger Alleviation', name: 'Hunger Alleviation', icon: '🍽️', color: 'bg-orange-100 text-orange-800' },
   ];
