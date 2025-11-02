@@ -10,6 +10,7 @@ using GOG.API.Controllers;
 using GOG.API.Services;
 using GOG.API.DTOs;
 using GOG.API.Models;
+using Task = System.Threading.Tasks.Task;
 
 [TestClass]
 public class IncidentReportsControllerTests

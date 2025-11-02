@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using GOG.API.Models;
 using GOG.API.Services;
 using GOG.API.DTOs;
+using Task = System.Threading.Tasks.Task;
 
 [TestClass]
 public class AuthControllerTests

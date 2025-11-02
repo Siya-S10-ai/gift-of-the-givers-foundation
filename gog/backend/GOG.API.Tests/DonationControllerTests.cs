@@ -7,6 +7,7 @@ using GOG.API.Data;
 using GOG.API.Models;
 using GOG.API.DTOs;
 using GOG.API.Controllers;
+using Task = System.Threading.Tasks.Task;
 
 [TestClass]
 public class DonationsControllerTests
