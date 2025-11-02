@@ -1,15 +1,15 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using GOG.API.Data;
-using GOG.API.Controllers;
-using GOG.API.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using GOG.API.DTOs;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Text;
+using GOG.API.Data;
+using GOG.API.Controllers;
+using GOG.API.Services;
+using GOG.API.DTOs;
+using GOG.API.Models;
 
 [TestClass]
 public class IncidentReportsControllerTests
@@ -22,14 +22,14 @@ public class IncidentReportsControllerTests
         return new ApplicationDbContext(options);
     }
 
-    [TestClass]
+    [TestMethod]
     public async Task CreateIncidentReport_SavesReport_AndUploadsImage()
     {
         // Arrange
-        var context = new CreateContext();
+        var context = CreateContext();
         var blobMock = new Mock<IBlobStrorageService>();
         blobMock.Setup(b => b.UploadImageAsync(It.IsAny<IFormFile>(), It.IsAny<string>(), It.IsAny<string>()))
-            .RetursAsync("https://blob/incident/image.jpg"); // ADD A WORKING IMAGE LINK
+            .ReturnsAsync("https://blob/incident/image.jpg");
 
         var controller = new IncidentReportsController(context, blobMock.Object);
 
@@ -53,7 +53,7 @@ public class IncidentReportsControllerTests
         // need to set a fake User claim for UserId in controller
         var user = new System.Security.Claims.ClaimsPrincipal(new System.Security.Claims.ClaimsIdentity(new[]
         {
-            new System.Security.Claims.Cliam("UserId", "user-123"),
+            new System.Security.Claims.Claim("UserId", "user-123"),
             new System.Security.Claims.Claim("UserName", "tester")
         }, "TestAuth"));
 
@@ -62,7 +62,7 @@ public class IncidentReportsControllerTests
             HttpContext = new DefaultHttpContext { User = user }
         };
 
-        / Act
+        // Act
         var result = await controller.CreateIncidentReport(createDto) as CreatedAtActionResult;
 
         // Assert
@@ -71,7 +71,7 @@ public class IncidentReportsControllerTests
         Assert.IsNotNull(saved);
         Assert.AreEqual("desc", saved.Description);
         Assert.AreEqual("user-123", saved.UserId);
-        Assert.AreEqual("https://blob/incident/image.jpg", saved.ImageUrl); // ADD A WORKING IMAGE LINK
+        Assert.AreEqual("https://blob/incident/image.jpg", saved.ImageUrl);
         blobMock.Verify(b => b.UploadImageAsync(It.IsAny<IFormFile>(), "incident-images", It.IsAny<string>()), Times.Once);
     }
 

@@ -1,18 +1,13 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
-using GOG.API.Controllers;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using GOG.API.Models;
 using GOG.API.Services;
 using GOG.API.DTOs;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using System.Security.Cryptography.X509Certificates;
-using System.Runtime.CompilerServices;
 
 [TestClass]
 public class AuthControllerTests

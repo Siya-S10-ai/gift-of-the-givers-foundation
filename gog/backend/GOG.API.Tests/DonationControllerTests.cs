@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 using GOG.API.Data;
-using GOG.API.Controllers;
 using GOG.API.Models;
 using GOG.API.DTOs;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System.Linq;
+using GOG.API.Controllers;
 
 [TestClass]
 public class DonationsControllerTests
@@ -40,7 +40,7 @@ public class DonationsControllerTests
     [TestMethod]
     public async Task GetDonations_ReturnsList()
     {
-        var context = Create Context();
+        var context = CreateContext();
         context.Donations.Add(new Donation { Amount = 50m, DonorName = "Sipho" });
         context.Donations.Add(new Donation { Amount = 75m, DonaitonName = "Jabu"});
         await context.SaveChangesAsync();
