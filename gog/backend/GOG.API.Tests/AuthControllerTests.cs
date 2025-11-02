@@ -9,90 +9,106 @@ using GOG.API.Models;
 using GOG.API.Services;
 using GOG.API.DTOs;
 using Task = System.Threading.Tasks.Task;
+using System.Threading;
 
-[TestClass]
-public class AuthControllerTests
+namespace GOG.API.Tests
 {
-    private Mock<UserManager<ApplicationUser>> _userManagerMock;
-    private Mock<SignInManager<ApplicationUser>> _signInManagerMock;
-    private Mock<IJwtService> _jwtServiceMock;
-    private Mock<GOG.API.Data.ApplicationDbContext> _dbContextMock;
-
-    [TestInitialize]
-    public void Setup()
+    [TestClass]
+    public class AuthControllerTests
     {
-        _userManagerMock = IdentityMocks.MockUserManager<ApplicationUser>();
-        _signInManagerMock = IdentityMocks.MockSignInManager<ApplicationUser>(_userManagerMock);
-        _jwtServiceMock = new Mock<IJwtService>();
-        _dbContextMock = new Mock<GOG.API.Data.ApplicationDbContext>();
-    }
+        private Mock<UserManager<ApplicationUser>> _userManagerMock!;
+        private Mock<SignInManager<ApplicationUser>> _signInManagerMock!;
+        private Mock<IJwtService> _jwtServiceMock!;
+        private Mock<GOG.API.Data.ApplicationDbContext> _dbContextMock!;
 
-    [TestMethod]
-    public async Task Register_ReturnsOk_WithToken_OnSucccess()
-    {
-        //Arrange
-        var registerDto = new RegisterDto { Email = "a@b.com", Username = "Siya", Password = "Password1234!", Role = "Volunteer" };
-        var user = new ApplicationUser { Email = registerDto.Email, UserName = registerDto.Username };
+        [TestInitialize]
+        public void Setup()
+        {
+            _userManagerMock = TestHelpers.IdentityMocks.MockUserManager<ApplicationUser>();
+            _signInManagerMock = TestHelpers.IdentityMocks.MockSignInManager<ApplicationUser>(_userManagerMock);
+            _jwtServiceMock = new Mock<IJwtService>();
+            _dbContextMock = new Mock<GOG.API.Data.ApplicationDbContext>();
+        }
 
-        _userManagerMock.Setup(x => x.FindByEmailAsync(registerDto.Email)).ReturnsAsync((ApplicationUser?)null);
-        _userManagerMock.Setup(x => x.CreateAsync(IteratorStateMachineAttribute.IsAny<AppplicationUser>(), registerDto.Password))
-            .ReturnsAsync(IdentityResult.Success)
-            .Callback<ApplicationUser, string>((u, p) => { u.Id = "test-id"; });
-        _userManagerMock.Setup(x => x.AddToRoleAsync(It.IsAny<ApplicationUser>(), registerDto.Role))
-        .ReturnsAsync(IdentifyResult.Success);
-            
-        _jwtServiceMock.Setup(j => j.GenerateToken(It.IsAny<ApplicationUser>())).Returns("fake-token");
+        [TestMethod]
+        public async Task Register_ReturnsOk_WithToken_OnSucccess()
+        {
+            //Arrange
+            var registerDto = new RegisterDto { Email = "a@b.com", Username = "Siya", Password = "Password1234!", Role = "Volunteer" };
 
-        var controller = new AuthController(_userManagerMock.Object, _signInManagerMock.Object, _jwtServiceMock.Object, _dbContextMock.Object);
+            _userManagerMock.Setup(x => x.FindByEmailAsync(registerDto.Email)).ReturnsAsync((ApplicationUser?)null);
+            _userManagerMock.Setup(x => x.CreateAsync(It.IsAny<AppplicationUser>(), registerDto.Password))
+                .ReturnsAsync(IdentityResult.Success)
+                .Callback<ApplicationUser, string>((u, p) => u.Id = "test-id");
+            _userManagerMock.Setup(x => x.AddToRoleAsync(It.IsAny<ApplicationUser>(), registerDto.Role))
+                .ReturnsAsync(IdentifyResult.Success);
+                
+            _jwtServiceMock.Setup(j => j.GenerateToken(It.IsAny<ApplicationUser>())).Returns("fake-token");
 
-        // Act
-        var result = await controller.Register(registerDto) as OKObjectResult;
+            var controller = new GOG.API.Controllers.AuthController(
+                _userManagerMock.Object,
+                _signInManagerMock.Object,
+                _jwtServiceMock.Object,
+                _dbContextMock.Object);
 
-        // Assert
-        Assert.IsNotNull(result);
-        var body = result.Value as AuthResponseDto;
-        Assert.IsNotNull(body);
-        Assert.AreEqual("fake-token", body.Token);
-        Assert.AreEqual("test-id", body.UserId);
-    }
+            // Act
+            var actionResult = await controller.Register(registerDto);
+            var ok = actionResult.Result as OkObjectResult;
 
-    [TestMethod]
-    public async Task Login_ReturnsUnauthorized_OnInvalidCredentials()
-    {
-        // Arrange
-        var loginDto = new LoginDto { Email = "notfound@b.com", Password = "bad" };
+            // Assert
+            Assert.IsNotNull(ok);
+            var body = ok!.Value as AuthResponseDto;
+            Assert.IsNotNull(body);
+            Assert.AreEqual("fake-token", body!.Token);
+            Assert.AreEqual("test-id", body.UserId);
+        }
 
-        _userManagerMock.Setup(x =>x.FindByEmailAsync(loginDto.Email)).ReturnsAsync((ApplicationUser?)null);
+        [TestMethod]
+        public async Task Login_ReturnsUnauthorized_OnInvalidCredentials()
+        {
+            // Arrange
+            var loginDto = new LoginDto { Email = "notfound@b.com", Password = "bad" };
 
-        var controller = new AuthController(_userManagerMock.Object, _signInManagerMock.Object, _jwtServiceMock.Object, _dbContextMock.Object);
+            _userManagerMock.Setup(x => x.FindByEmailAsync(loginDto.Email)).ReturnsAsync((ApplicationUser?)null);
 
-        // Act
-        var result = await controller.Login(loginDto);
+            var controller = new GOG.API.Controllers.AuthController(
+                _userManagerMock.Object,
+                _signInManagerMock.Object,
+                _jwtServiceMock.Object,
+                _dbContextMock.Object);
 
-        // Assert
-        Assert.IsInstanceOfType(result.Result, typeof(UnauthorizedObjectResult));
-    }
+            // Act
+            var result = await controller.Login(loginDto);
 
-    [TestMethod]
-    public async Task Login_ReturnsOk_WithToken_OnSuccess()
-    {
-        var loginDto = new LoginDto { Email = "a@b.com", Password = "GoodPass" };
-        var user = new ApplicationUser { Id = "uid", Email = loginDto.Email, UserName = "u1" };
+            // Assert
+            Assert.IsInstanceOfType(result.Result, typeof(UnauthorizedObjectResult));
+        }
 
-        _userManagerMock.Setup(x => x.FindByEmailAsync(loginDto.Email)).ReturnsAsync(user);
-        _signInManagerMock.Setup(s => s.CheckPasswordSignInAsync(user, loginDto.Password, false))
-            .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Success);
+        [TestMethod]
+        public async Task Login_ReturnsOk_WithToken_OnSuccess()
+        {
+            var loginDto = new LoginDto { Email = "a@b.com", Password = "GoodPass" };
+            var user = new ApplicationUser { Id = "uid", Email = loginDto.Email, UserName = "u1" };
 
-        _jwtServiceMock.Setup(j => j.GenerateToken(user)).Returns("jwt-token");
+            _userManagerMock.Setup(x => x.FindByEmailAsync(loginDto.Email)).ReturnsAsync(user);
+            _signInManagerMock.Setup(s => s.CheckPasswordSignInAsync(user, loginDto.Password, false))
+                .ReturnsAsync(SignInResult.Success);
 
-        var controller = new AuthController(_userManagerMock.Object, _signInManagerMock.Object, _jwtServiceMock.Object, _dbContextMock.Object);
+            _jwtServiceMock.Setup(j => j.GenerateToken(user)).Returns("jwt-token");
 
-        var actionResult = await controller.Login(loginDto);
-        var ok = actionResult.Result as OkObjectResult;
-        Assert.IsNotNull(ok);
-        var body = ok.Value as AuthResponseDto;
-        Assert.IsNotNull(body);
-        Assert.AreEqual("jwt-token", body.Token);
-        Assert.AreEqual("uid", body.UserId);
+            var controller = new GOG.API.Controllers.AuthController(
+                _userManagerMock.Object,
+                _signInManagerMock.Object,
+                _jwtServiceMock.Object,
+                _dbContextMock.Object);
+
+            var actionResult = await controller.Login(loginDto);
+            var ok = actionResult.Result as OkObjectResult;
+            Assert.IsNotNull(ok);
+            var body = ok!.Value as AuthResponseDto;
+            Assert.IsNotNull(body);
+            Assert.AreEqual("jwt-token", body!.Token);
+            Assert.AreEqual("uid", body.UserId);
+        }
     }
 }
