@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "odtALklgNDE=",
+  "dgSpecHash": "FNBjqWS9TRU=",
   "success": true,
   "projectFilePath": "C:\\Users\\Thandiwe\\Desktop\\Software Development 2025\\Applied Programming\\Part 3 - Testing\\gift-of-the-givers-foundation\\gog\\backend\\GOG.API.Tests\\GOG.API.Tests.csproj",
   "expectedPackageFiles": [
@@ -90,15 +90,7 @@
     "C:\\Users\\Thandiwe\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\Thandiwe\\.nuget\\packages\\system.text.json\\9.0.10\\system.text.json.9.0.10.nupkg.sha512",
     "C:\\Users\\Thandiwe\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\xunit\\2.9.2\\xunit.2.9.2.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\xunit.analyzers\\1.16.0\\xunit.analyzers.1.16.0.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\xunit.assert\\2.9.2\\xunit.assert.2.9.2.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\xunit.core\\2.9.2\\xunit.core.2.9.2.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\xunit.extensibility.core\\2.9.2\\xunit.extensibility.core.2.9.2.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\xunit.extensibility.execution\\2.9.2\\xunit.extensibility.execution.2.9.2.nupkg.sha512",
-    "C:\\Users\\Thandiwe\\.nuget\\packages\\xunit.runner.visualstudio\\2.8.2\\xunit.runner.visualstudio.2.8.2.nupkg.sha512"
+    "C:\\Users\\Thandiwe\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
