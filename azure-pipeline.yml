@@ -122,9 +122,9 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy backend to Azure Web App'
             inputs:
-              azureSubscription: '$(azureServiceConnection)'     # <-- create / set in pipeline
+              azureSubscription: 'ADvTECH-Tertiary Rosebank College'     # <-- create / set in pipeline
               appType: 'webApp'
-              appName: '$(backendAppName)'                       # <-- set pipeline variable with your backend app name
+              appName: '$(myBackendApp)'                       # <-- set pipeline variable with our backend app name
               package: '$(Pipeline.Workspace)/drop/backend_publish'
 
           # Deploy frontend static files to a different App Service or storage account.
@@ -132,8 +132,8 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy frontend to Azure Web App (if using standard App Service)'
             inputs:
-              azureSubscription: '$(azureServiceConnection)'
+              azureSubscription: 'ADvTECH-Tertiary Rosebank College'
               appType: 'webApp'
-              appName: '$(frontendAppName)'                      # <-- set pipeline variable with your frontend app name
+              appName: '$(myFrontendApp)'                      # <-- set pipeline variable with your frontend app name
               package: '$(Pipeline.Workspace)/drop/frontend'
               
