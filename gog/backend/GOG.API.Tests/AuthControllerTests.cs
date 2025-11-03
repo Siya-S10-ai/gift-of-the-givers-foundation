@@ -10,17 +10,20 @@ using GOG.API.Services;
 using GOG.API.DTOs;
 using Task = System.Threading.Tasks.Task;
 using System.Threading;
+using System.Data;
 
 namespace GOG.API.Tests
 {
     [TestClass]
     public class AuthControllerTests
     {
-        private Mock<UserManager<ApplicationUser>> _userManagerMock!;
-        private Mock<SignInManager<ApplicationUser>> _signInManagerMock!;
-        private Mock<IJwtService> _jwtServiceMock!;
-        private Mock<GOG.API.Data.ApplicationDbContext> _dbContextMock!;
-
+        // private Mock<UserManager<ApplicationUser>> _userManagerMock!;
+        // private Mock<SignInManager<ApplicationUser>> _signInManagerMock!;
+        // private Mock<IJwtService> _jwtServiceMock!;
+        private Mock<GOG.API.Data.ApplicationDbContext> _dbContextMock = null!;
+        private Mock<UserManager<ApplicationUser>> _userManagerMock = null!;
+        private Mock<SignInManager<ApplicationUser>> _signInManagerMock = null!;
+        private Mock<IJwtService> _jwt_serviceMock = null!;
         [TestInitialize]
         public void Setup()
         {
@@ -37,11 +40,11 @@ namespace GOG.API.Tests
             var registerDto = new RegisterDto { Email = "a@b.com", Username = "Siya", Password = "Password1234!", Role = "Volunteer" };
 
             _userManagerMock.Setup(x => x.FindByEmailAsync(registerDto.Email)).ReturnsAsync((ApplicationUser?)null);
-            _userManagerMock.Setup(x => x.CreateAsync(It.IsAny<AppplicationUser>(), registerDto.Password))
+            _userManagerMock.Setup(x => x.CreateAsync(It.IsAny<ApplicationUser>(), registerDto.Password))
                 .ReturnsAsync(IdentityResult.Success)
                 .Callback<ApplicationUser, string>((u, p) => u.Id = "test-id");
             _userManagerMock.Setup(x => x.AddToRoleAsync(It.IsAny<ApplicationUser>(), registerDto.Role))
-                .ReturnsAsync(IdentifyResult.Success);
+                .ReturnsAsync(IdentityResult.Success);
                 
             _jwtServiceMock.Setup(j => j.GenerateToken(It.IsAny<ApplicationUser>())).Returns("fake-token");
 
@@ -92,7 +95,7 @@ namespace GOG.API.Tests
 
             _userManagerMock.Setup(x => x.FindByEmailAsync(loginDto.Email)).ReturnsAsync(user);
             _signInManagerMock.Setup(s => s.CheckPasswordSignInAsync(user, loginDto.Password, false))
-                .ReturnsAsync(SignInResult.Success);
+                .ReturnsAsync(Microsoft.AspNetCore.Identity.SignInResult.Success);
 
             _jwtServiceMock.Setup(j => j.GenerateToken(user)).Returns("jwt-token");
 
