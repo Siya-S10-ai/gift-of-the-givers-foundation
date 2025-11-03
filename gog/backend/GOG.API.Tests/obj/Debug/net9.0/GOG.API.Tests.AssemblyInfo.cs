@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GOG.API.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f58ba5f03acf7a4a818f607277b413205065b218")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+609cf335801f1ac64cb525a442c0b757377d7aa5")]
 [assembly: System.Reflection.AssemblyProductAttribute("GOG.API.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GOG.API.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

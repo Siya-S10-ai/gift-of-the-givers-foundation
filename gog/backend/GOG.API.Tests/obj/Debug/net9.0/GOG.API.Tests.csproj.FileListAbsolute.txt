@@ -1,0 +1,10 @@
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\bin\Debug\net9.0\.msCoverageSourceRootsMapping_GOG.API.Tests
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\bin\Debug\net9.0\CoverletSourceRootsMapping_GOG.API.Tests
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\obj\Debug\net9.0\GOG.API.Tests.csproj.AssemblyReference.cache
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\obj\Debug\net9.0\GOG.API.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\obj\Debug\net9.0\GOG.API.Tests.AssemblyInfoInputs.cache
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\obj\Debug\net9.0\GOG.API.Tests.AssemblyInfo.cs
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\obj\Debug\net9.0\GOG.API.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\obj\Debug\net9.0\GOG.API.Tests.sourcelink.json
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\obj\Debug\net9.0\GOG.API.Tests.gentestingplatformentrypointinputcache.cache
+C:\Users\Thandiwe\Desktop\Software Development 2025\Applied Programming\Part 3 - Testing\gift-of-the-givers-foundation\gog\backend\GOG.API.Tests\obj\Debug\net9.0\GOG.API.Tests.genautoregisteredextensionsinputcache.cache

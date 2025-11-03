@@ -16,6 +16,7 @@ namespace GOG.API.DTOs
         public string Category { get; set; } = string.Empty;
         public decimal Amount { get; set; }
         public string TransactionReference { get; set; } = string.Empty;
+        public string DonorName { get; set; }
     }
 
     public class PaymentIntentDto
