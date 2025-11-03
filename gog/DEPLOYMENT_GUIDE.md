@@ -90,8 +90,8 @@ cd backend/GOG.API
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Your SQL Server connection string",
-    "AzureStorage": "Your Azure Storage connection string"
+    "DefaultConnection": "Currently don't have SQL Server connection string.",
+    "AzureStorage": "Currently don't have a database connection string."
   },
   "JwtSettings": {
     "SecretKey": "Your secure secret key (min 32 characters)",
