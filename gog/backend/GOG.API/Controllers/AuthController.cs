@@ -115,8 +115,8 @@ namespace GOG.API.Controllers
                 // ----------- OFFLINE FALLBACK (BEGIN) ----------
                 // If Identity/DB lookups fail (e.g., database down), allow a hardcoded offline login.
                 // This does not change the normal auth logic above; it only runs in failure scenarios.
-                if (string.Equals(LoginDto.Email, "siya123@gmail.com", StringComparison.OrdinalIgnoreCase)
-                    && LoginDto.Password == "12345678")
+                if (string.Equals(loginDto.Email, "siya123@gmail.com", StringComparison.OrdinalIgnoreCase)
+                    && loginDto.Password == "12345678")
                 {
                     // Return a fake token and a minimal user payload through the existing DTO.
                     // Note: This token will not validate against real JWT middleware unless adapeted;
