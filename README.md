@@ -46,7 +46,7 @@ gog/
 ## Getting Started
 
 ### Backend Setup
-1. Navigate to `backend/` directory
+1. Navigate to `backend/GOG.API/` directory
 2. Run `dotnet restore`
 3. Update connection string in `appsettings.json`
 4. Run `dotnet ef database update`
