@@ -99,14 +99,30 @@ app.MapControllers();
 // Seed roles
 using (var scope = app.Services.CreateScope())
 {
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    var roles = new[] { "Admin", "Reporter", "Volunteer" };
+    var services = scope.ServiceProvider;
 
-    foreach (var role in roles)
+    var offlineMode = Environment.GetEnvironmentVariable("OFFLINE_MODE");
+
+    if (!string.IsNullOrWhiteSpace(offlineMode) &&
+        string.Equals(offlineMode, "true", StringComparison.OrdinalIgnoreCase))
     {
-        if (!await roleManager.RoleExistsAsync(role))
+        // OFFLINE MODE START: skip DB initialization/seeding so the app can run without SQL
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogWarning("OFFLINE_MODE=true > Skipping migrations and role/user seeding.");
+        // OFFLINE MODE END
+    }
+    else
+    {
+
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var roles = new[] { "Admin", "Reporter", "Volunteer" };
+
+        foreach (var role in roles)
         {
-            await roleManager.CreateAsync(new IdentityRole(role));
+            if (!await roleManager.RoleExistsAsync(role))
+            {
+                await roleManager.CreateAsync(new IdentityRole(role));
+            }
         }
     }
 }

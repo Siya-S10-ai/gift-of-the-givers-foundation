@@ -39,10 +39,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
         try {
+          if (storedToken.startsWith('FAKE-')){
+            // Offline synthetic user; skip API calls
+            setUser({
+              userId: 'offline-user',
+              name: 'Offline User',
+              surname: 'Nhlapo',
+              username: 'Siya',
+              email: 'siyabonga@gmail.com',
+              phone: '0768078130',
+              role: 'Volunteer',
+            } as User);
+            setToken(storedToken);
+          } else {
           const userData = await authAPI.getProfile();
           setUser(userData);
           setToken(storedToken);
-        } catch (error) {
+        } 
+      } catch {
           // Token is invalid, clear it
           localStorage.removeItem('token');
           setToken(null);
@@ -60,8 +74,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const response: AuthResponse = await authAPI.login(data);
       localStorage.setItem('token', response.token);
       setToken(response.token);
+
+      if (response.token.startsWith('FAKE-')) {
+        setUser({
+          userId: 'offline-user',
+              name: 'Offline User',
+              surname: 'Nhlapo',
+              username: 'Siya',
+              email: 'siyabonga@gmail.com',
+              phone: '0768078130',
+              role: 'Volunteer',
+        } as User);
+        return;
+      }
       
+      // ----- DO NOT CALL PROFILE ------
       // Fetch user profile
+      //const userData = await authAPI.getProfile();
+      //setUser(userData);
+    //} catch (error) {
+      //throw error;
       const userData = await authAPI.getProfile();
       setUser(userData);
     } catch (error) {

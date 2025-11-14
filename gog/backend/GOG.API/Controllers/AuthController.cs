@@ -84,6 +84,33 @@ namespace GOG.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponseDto>> Login(LoginDto loginDto)
         {
+
+            // OFFLINE MODE START
+    // If the environment variable OFFLINE_MODE is set to "true" (case-insensitive),
+    // bypass all database / Identity lookups and return a mock authenticated user.
+    // This block is intentionally easy to remove later.
+    var offlineMode = Environment.GetEnvironmentVariable("OFFLINE_MODE");
+    if (!string.IsNullOrWhiteSpace(offlineMode) &&
+        string.Equals(offlineMode, "true", StringComparison.OrdinalIgnoreCase))
+    {
+        var requiredOfflinePassword = Environment.GetEnvironmentVariable("OFFLINE_PASSWORD"); // e.g. "12345678"
+        if (!string.IsNullOrEmpty(requiredOfflinePassword) &&
+            !string.Equals(loginDto.Password, requiredOfflinePassword, StringComparison.Ordinal))
+        {
+            return Unauthorized("Invalid offline password");
+        }
+        
+        var offlineResponse = new AuthResponseDto
+        {
+            Token = "FAKE-TOKEN-12345",
+            UserId = "offline-user",
+            Username = "offline_user",
+            Role = "Volunteer",
+            Email = "siyabonga@gmail.com"
+        };
+        return Ok(offlineResponse);
+    }
+    // OFFLINE MODE END
             try
             {
                 var user = await _userManager.FindByEmailAsync(loginDto.Email);
