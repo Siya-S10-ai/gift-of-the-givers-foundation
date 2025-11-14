@@ -39,7 +39,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
         try {
-          if (storedToken.startsWith('FAKE-')){
+          if (storedToken.startsWith('FAKE-')) {
             // Offline synthetic user; skip API calls
             setUser({
               userId: 'offline-user',
