@@ -9,7 +9,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "OFFLINE_MODE": "true",
-        "OFFLINE_PASSWORD": "12345678"
+        "OFFLINE_PASSWORD": "J@5f!tP7#zQrM4w",
+        "OFFLINE_PASSWORD_NOTE": "This password is for development only. Change before deploying to production."
       }
     },
     "https": {
