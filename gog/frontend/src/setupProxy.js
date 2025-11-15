@@ -7,6 +7,7 @@ module.exports = function(app) {
     createProxyMiddleware({
       target: 'http://localhost:5211',
       changeOrigin: true,
+      secure: false,
     })
   );
 };
