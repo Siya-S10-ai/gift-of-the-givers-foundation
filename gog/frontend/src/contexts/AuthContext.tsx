@@ -43,11 +43,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             // Offline synthetic user; skip API calls
             setUser({
               userId: 'offline-user',
-              name: 'Offline User',
+              name: 'Siyabonga',
               surname: 'Nhlapo',
               username: 'Siya',
-              email: 'siyabonga@gmail.com',
-              phone: '0768078130',
+              email: 'offline@example.com',
+              phone: '0712345678',
               role: 'Volunteer',
             } as User);
             setToken(storedToken);
@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           setUser(userData);
           setToken(storedToken);
         } 
-      } catch {
+      } catch (error) {
           // Token is invalid, clear it
           localStorage.removeItem('token');
           setToken(null);
@@ -78,11 +78,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (response.token.startsWith('FAKE-')) {
         setUser({
           userId: 'offline-user',
-              name: 'Offline User',
+              name: 'Siyabonga',
               surname: 'Nhlapo',
               username: 'Siya',
-              email: 'siyabonga@gmail.com',
-              phone: '0768078130',
+              email: 'offline@example.com',
+              phone: '0712345678',
               role: 'Volunteer',
         } as User);
         return;
