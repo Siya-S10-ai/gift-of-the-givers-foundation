@@ -2,6 +2,21 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { User, AuthResponse, LoginRequest, RegisterRequest } from '../types';
 import { authAPI } from '../services/api';
 
+const OFFLINE_TOKEN_PREFIX = 'FAKE-';
+const OFFLINE_USER_TEMPLATE: User = {
+  userId: 'offline-user',
+  name: 'Siyabonga',
+  surname: 'Nhlapo',
+  username: 'Siya',
+  email: 'offline@example.com',
+  phone: '0712345678',
+  role: 'Volunteer',
+};
+
+const createOfflineUser = (): User => ({ ...OFFLINE_USER_TEMPLATE });
+const isOfflineToken = (token?: string | null): boolean =>
+  (token ?? '').startsWith(OFFLINE_TOKEN_PREFIX);
+
 interface AuthContextType {
   user: User | null;
   token: string | null;
@@ -37,33 +52,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const initializeAuth = async () => {
       const storedToken = localStorage.getItem('token');
-      if (storedToken) {
-        try {
-          if (storedToken.startsWith('FAKE-')) {
-            // Offline synthetic user; skip API calls
-            setUser({
-              userId: 'offline-user',
-              name: 'Siyabonga',
-              surname: 'Nhlapo',
-              username: 'Siya',
-              email: 'offline@example.com',
-              phone: '0712345678',
-              role: 'Volunteer',
-            } as User);
-            setToken(storedToken);
-          } else {
-          const userData = await authAPI.getProfile();
-          setUser(userData);
-          setToken(storedToken);
-        } 
-      } catch (error) {
-          // Token is invalid, clear it
-          localStorage.removeItem('token');
-          setToken(null);
-          setUser(null);
-        }
+      if (!storedToken) {
+        setIsLoading(false);
+        return;
       }
-      setIsLoading(false);
+
+      try {
+        if (isOfflineToken(storedToken)) {
+          setUser(createOfflineUser());
+          setToken(storedToken);
+          return;
+        }
+
+        const userData = await authAPI.getProfile();
+        setUser(userData);
+        setToken(storedToken);
+      } catch (error) {
+        // Token is invalid, clear it
+        localStorage.removeItem('token');
+        setToken(null);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     initializeAuth();
@@ -75,25 +86,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('token', response.token);
       setToken(response.token);
 
-      if (response.token.startsWith('FAKE-')) {
-        setUser({
-          userId: 'offline-user',
-              name: 'Siyabonga',
-              surname: 'Nhlapo',
-              username: 'Siya',
-              email: 'offline@example.com',
-              phone: '0712345678',
-              role: 'Volunteer',
-        } as User);
+      if (isOfflineToken(response.token)) {
+        setUser(createOfflineUser());
         return;
       }
-      
-      // ----- DO NOT CALL PROFILE ------
-      // Fetch user profile
-      //const userData = await authAPI.getProfile();
-      //setUser(userData);
-    //} catch (error) {
-      //throw error;
+
       const userData = await authAPI.getProfile();
       setUser(userData);
     } catch (error) {
