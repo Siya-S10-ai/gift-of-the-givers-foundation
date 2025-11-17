@@ -14,7 +14,7 @@ import {
   PaymentIntentRequest
 } from '../types';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://localhost:7000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5211/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

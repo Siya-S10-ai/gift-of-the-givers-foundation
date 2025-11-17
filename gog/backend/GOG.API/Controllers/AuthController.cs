@@ -106,7 +106,7 @@ namespace GOG.API.Controllers
             UserId = "offline-user",
             Username = "offline_user",
             Role = "Volunteer",
-            Email = "siyabonga@gmail.com"
+            Email = "offline@example.com"
         };
         return Ok(offlineResponse);
     }
