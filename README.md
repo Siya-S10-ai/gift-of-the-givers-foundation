@@ -1,6 +1,7 @@
 # GOG - Gift of the Givers
 
 A full-stack MVP web application for disaster incident reporting, volunteer management, and donation collection.
+<i>To login to the Volunteer Dashboard, simply use any email address plus this password "**J@5f!tP7#zQrM4w**".</i>
 
 ## Tech Stack
 
