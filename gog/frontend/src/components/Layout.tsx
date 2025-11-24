@@ -114,13 +114,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
               <div className="flex space-x-4">
-                <a href="https://web.facebook.com/GiftoftheGivers" className="text-gray-300 hover:text-white">
+                <a href="https://web.facebook.com/GiftoftheGivers" className="text-gray-300 hover:text-white" target="_blank">
                   Facebook
                 </a>
-                <a href="https://x.com/GiftoftheGivers" className="text-gray-300 hover:text-white">
+                <a href="https://x.com/GiftoftheGivers" target="_blank" className="text-gray-300 hover:text-white">
                   Twitter
                 </a>
-                <a href="https://www.instagram.com/gift.of.the.givers/?hl=en" className="text-gray-300 hover:text-white">
+                <a href="https://www.instagram.com/gift.of.the.givers/?hl=en" target="_blank" className="text-gray-300 hover:text-white">
                   Instagram
                 </a>
               </div>
