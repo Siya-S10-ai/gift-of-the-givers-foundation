@@ -162,6 +162,7 @@ const Register: React.FC = () => {
                   name="phone"
                   type="tel"
                   required
+                  placeholder='0768078130'
                   value={formData.phone}
                   onChange={handleChange}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -184,6 +185,7 @@ const Register: React.FC = () => {
                 >
                   <option value="Volunteer">Volunteer</option>
                   <option value="Reporter">Reporter</option>
+                  <option value="Medical">Medical</option>
                 </select>
               </div>
             </div>

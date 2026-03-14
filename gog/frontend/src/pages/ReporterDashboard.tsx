@@ -26,6 +26,7 @@ const ReporterDashboard: React.FC = () => {
     { id: 'Human Development', name: 'Human Development', icon: '👣', color: 'bg-purple-100 text-purple-800' },
     { id: 'Water Provision', name: 'Water Provision', icon: '💧', color: 'bg-cyan-100 text-cyan-800' },
     { id: 'Hunger Alleviation', name: 'Hunger Alleviation', icon: '🍽️', color: 'bg-orange-100 text-orange-800' },
+    { id: 'Technological Skills', name: 'Technological Skills', icon: '🖥️', color: 'bg-orange-100 text-orange-800' },
   ];
 
   useEffect(() => {
@@ -111,7 +112,7 @@ const ReporterDashboard: React.FC = () => {
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Reporter Dashboard</h1>
-            <p className="text-gray-600">Welcome back, {user?.username}</p>
+            <p className="text-gray-600">Welcome back, {user?.phone}</p>
           </div>
           <button
             onClick={() => setShowForm(!showForm)}
