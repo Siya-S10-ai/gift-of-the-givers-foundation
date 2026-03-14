@@ -11,18 +11,20 @@ namespace GOG.API.Data
         {
         }
 
+        // Add Database Tables
         public DbSet<IncidentReport> IncidentReports { get; set; }
         public DbSet<Models.Task> Tasks { get; set; }
         public DbSet<Donation> Donations { get; set; }
 
+        // 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
             // Configure ApplicationUser relationships
             builder.Entity<ApplicationUser>()
-                .HasMany(u => u.IncidentReports)
-                .WithOne(r => r.User)
+                .HasMany(u => u.IncidentReports) // One user can have many incident reports
+                .WithOne(r => r.User)   // Each report belongs to one user
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
